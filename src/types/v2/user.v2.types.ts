@@ -1,8 +1,23 @@
 // Users
-import type { CashtagEntity, HashtagEntity, MentionEntity, UrlEntity } from '../entities.types';
+import type {
+  CashtagEntity,
+  HashtagEntity,
+  MentionEntity,
+  UrlEntity,
+} from '../entities.types';
 import type { ApiV2Includes } from './tweet.definition.v2';
-import type { DataAndIncludeV2, DataMetaAndIncludeV2, DataV2 } from './shared.v2.types';
-import type { TTweetv2MediaField, TTweetv2PlaceField, TTweetv2PollField, TTweetv2TweetField, TTweetv2UserField } from './tweet.v2.types';
+import type {
+  DataAndIncludeV2,
+  DataMetaAndIncludeV2,
+  DataV2,
+} from './shared.v2.types';
+import type {
+  TTweetv2MediaField,
+  TTweetv2PlaceField,
+  TTweetv2PollField,
+  TTweetv2TweetField,
+  TTweetv2UserField,
+} from './tweet.v2.types';
 import type { TypeOrArrayOf } from '../shared.types';
 import { PaginableCountMetaV2 } from './shared.v2.types';
 
@@ -30,15 +45,18 @@ export interface UserV2TimelineParams {
   pagination_token?: string;
 }
 
-export interface TweetRetweetedOrLikedByV2Params extends Partial<UsersV2Params> {
+export interface TweetRetweetedOrLikedByV2Params
+  extends Partial<UserV2TimelineParams> {
   asPaginator?: boolean;
 }
 
-export interface TweetRetweetedOrLikedByV2ParamsWithoutPaginator extends TweetRetweetedOrLikedByV2Params {
+export interface TweetRetweetedOrLikedByV2ParamsWithoutPaginator
+  extends TweetRetweetedOrLikedByV2Params {
   asPaginator?: false;
 }
 
-export interface TweetRetweetedOrLikedByV2ParamsWithPaginator extends TweetRetweetedOrLikedByV2Params {
+export interface TweetRetweetedOrLikedByV2ParamsWithPaginator
+  extends TweetRetweetedOrLikedByV2Params {
   asPaginator: true;
 }
 
@@ -77,7 +95,11 @@ export type UserV2MuteResult = DataV2<{
   muting: boolean;
 }>;
 
-export type UserV2TimelineResult = DataMetaAndIncludeV2<UserV2[], PaginableCountMetaV2, ApiV2Includes>;
+export type UserV2TimelineResult = DataMetaAndIncludeV2<
+  UserV2[],
+  PaginableCountMetaV2,
+  ApiV2Includes
+>;
 
 /** @deprecated Use {UserV2TimelineResult} instead. */
 export type FollowersV2Result = UserV2TimelineResult;
@@ -93,12 +115,12 @@ export interface UserV2 {
   withheld?: {
     country_codes?: string[];
     scope?: 'user';
-  }
+  };
   location?: string;
   url?: string;
   description?: string;
   verified?: boolean;
-  verified_type?: "none" | "blue" | "business" | "government";
+  verified_type?: 'none' | 'blue' | 'business' | 'government';
   entities?: {
     url?: { urls: UrlEntity[] };
     description: {
@@ -106,15 +128,15 @@ export interface UserV2 {
       hashtags?: HashtagEntity[];
       cashtags?: CashtagEntity[];
       mentions?: MentionEntity[];
-    }
-  }
+    };
+  };
   profile_image_url?: string;
   public_metrics?: {
     followers_count?: number;
     following_count?: number;
     tweet_count?: number;
     listed_count?: number;
-  }
+  };
   pinned_tweet_id?: string;
   connection_status?: string[];
 }
